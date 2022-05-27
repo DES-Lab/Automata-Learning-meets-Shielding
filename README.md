@@ -1,7 +1,8 @@
 # Automata Learning Meets Shielding
 
-![Shielding + Automata Learning](process.JPG)
-
+<p align="center">
+  <img src="https://github.com/DES-Lab/Automata-Learning-meets-Shielding/blob/master/process.JPG" />
+</p>
 This repository contains source code and experiment data for paper "Automata Learning Meets Shielding".
 
 # Install
