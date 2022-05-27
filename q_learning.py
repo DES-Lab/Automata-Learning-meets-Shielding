@@ -17,9 +17,9 @@ import copy
 from tempest_shields import TempestInterface
 from utils import writeSamplesToFile, deleteSampleFile
 
-world_file=sys.argv[1]
-setting=sys.argv[2]
-threshold=sys.argv[3]
+world_file = sys.argv[1]
+setting = sys.argv[2]
+threshold = sys.argv[3]
 
 force_determinism = False
 # Add slip to the observation set (action failed). Only necessary if is_partially_obs is set to True AND you want
@@ -69,7 +69,7 @@ def safe_argmax(q_table, state, shield):
     return action
 
 
-#def get_abstract_output(state, reward):
+# def get_abstract_output(state, reward):
 #    x, y = env.decode(state)
 #    if env.abstract_world[x][y] == 'd':
 #        output = 'death'
@@ -87,13 +87,13 @@ def get_abstract_output(state, reward):
         output = 'GOAL'
     else:
         output = env.abstract_world[x][y]
-        if x + 1 < len(env.abstract_world) and env.abstract_world[x+1][y] == 'd':
+        if x + 1 < len(env.abstract_world) and env.abstract_world[x + 1][y] == 'd':
             output += 'death_r'
-        if x-1 >= 0 and env.abstract_world[x-1][y] == 'd':
+        if x - 1 >= 0 and env.abstract_world[x - 1][y] == 'd':
             output += 'death_l'
-        if y+1 < len(env.abstract_world[x]) and env.abstract_world[x][y+1] == 'd':
+        if y + 1 < len(env.abstract_world[x]) and env.abstract_world[x][y + 1] == 'd':
             output += 'death_u'
-        if y-1 >= 0 and env.abstract_world[x][y-1] == 'd':
+        if y - 1 >= 0 and env.abstract_world[x][y - 1] == 'd':
             output += 'death_d'
     return output
 
@@ -116,12 +116,12 @@ def train_agent(training_type='no_penalty', verbose=False):
     q_table = np.zeros([env.observation_space.n, env.action_space.n])
 
     for i in range(1, num_training_episodes + 1):
-        #print(f"Episode {i}")
-        epsilon = epsilon*0.9999
+        # print(f"Episode {i}")
+        epsilon = epsilon * 0.9999
         if epsilon < epsilon_threshold: epsilon = epsilon_threshold
         if i % interval_size == 0:
 
-            poscount=0
+            poscount = 0
             if debug:
                 for r in ep_reward:
                     if r <= 0:
@@ -130,7 +130,7 @@ def train_agent(training_type='no_penalty', verbose=False):
                         print(colored(r, "blue"), end=",")
                     else:
                         print(colored(r, "green"), end=",")
-                        poscount=poscount+1
+                        poscount = poscount + 1
             if debug: print(f"\nPoscount: {poscount} / {interval_size}")
             print("")
             if verbose:
@@ -146,7 +146,7 @@ def train_agent(training_type='no_penalty', verbose=False):
                 writeSamplesToFile(training_data)
                 model = run_JAlergia(path_to_data_file='alergiaSamples.txt', automaton_type='mdp', eps=0.005,
                                      path_to_jAlergia_jar='alergia.jar', heap_memory='-Xmx12g')
-                #training_data.clear()
+                # training_data.clear()
 
                 tempest_interface = TempestInterface("GOAL", model, 2, "death", threshold)
 
@@ -161,7 +161,7 @@ def train_agent(training_type='no_penalty', verbose=False):
         while not done:
             if random.random() < epsilon:
                 if training_type == 'shielded' and tempest_interface is not None:
-                    action = env.actions_dict[random.sample(tempest_interface.get_safe_action_space(),1)[0]]
+                    action = env.actions_dict[random.sample(tempest_interface.get_safe_action_space(), 1)[0]]
                 else:
                     action = env.action_space.sample()
             else:
@@ -169,7 +169,7 @@ def train_agent(training_type='no_penalty', verbose=False):
                     action = np.argmax(q_table[state])
                 else:
                     action = safe_argmax(q_table, state, tempest_interface)
-            #if training_type == 'shielded' and tempest_interface is not None: print(f"playerlocation: {env.player_location[0]}, {env.player_location[1]} action: {env.action_space_to_act_map[action]}, shield state: {tempest_interface.current_state}")
+            # if training_type == 'shielded' and tempest_interface is not None: print(f"playerlocation: {env.player_location[0]}, {env.player_location[1]} action: {env.action_space_to_act_map[action]}, shield state: {tempest_interface.current_state}")
 
             next_state, reward, done, info = env.step(action)
             x, y = env.player_location[0], env.player_location[1]
@@ -189,8 +189,8 @@ def train_agent(training_type='no_penalty', verbose=False):
                     reward = forbidden_state_reward
                 done = True
 
-                #print(f"Episode: {episode_steps}, location: {env.player_location}")
-                #input("")
+                # print(f"Episode: {episode_steps}, location: {env.player_location}")
+                # input("")
 
             old_value = q_table[state, action]
 
@@ -222,7 +222,6 @@ def evaluate_agent(agent_q_table, shield=None, num_ep=100):
     forbidden_state_reached = 0
     total_steps = 0
 
-
     for _ in range(episodes):
         state = env.reset()
         if shield:
@@ -232,14 +231,14 @@ def evaluate_agent(agent_q_table, shield=None, num_ep=100):
 
         while not done:
             action = np.argmax(agent_q_table[state]) if shield is None else safe_argmax(q_table, state, shield)
-            #if debug: print(f"[({env.player_location[0], env.player_location[1]}) [{state}]", end=": ")
-            #if debug and shield:  print(f"allowed actions: {shield.get_safe_actions(state)}", end="")
+            # if debug: print(f"[({env.player_location[0], env.player_location[1]}) [{state}]", end=": ")
+            # if debug and shield:  print(f"allowed actions: {shield.get_safe_actions(state)}", end="")
             state, reward, done, info = env.step(action)
-            #if debug: print(f"reward: {reward}]  ->", end="")
+            # if debug: print(f"reward: {reward}]  ->", end="")
 
             if shield:
                 output = get_abstract_output(state, reward)
-                #print(f" \n output: {output}", end="")
+                # print(f" \n output: {output}", end="")
                 shield.step_to(env.action_space_to_act_map[action], output)
 
             x, y = env.player_location[0], env.player_location[1]
@@ -253,7 +252,7 @@ def evaluate_agent(agent_q_table, shield=None, num_ep=100):
 
             total_steps += 1
 
-        #if debug: input("")
+        # if debug: input("")
 
     print(f"Results after {episodes} episodes:")
     print(f"Total Number of Goal reached: {goals_reached}")
@@ -261,6 +260,6 @@ def evaluate_agent(agent_q_table, shield=None, num_ep=100):
 
 
 q_table, shield = train_agent(setting, verbose=True)
-#shield.print_shield()
-#input("")
+# shield.print_shield()
+# input("")
 evaluate_agent(q_table, shield, 1000)
