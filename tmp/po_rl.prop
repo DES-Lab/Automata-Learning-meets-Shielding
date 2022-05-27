@@ -1,0 +1,2 @@
+<safety_shield_death, PreSafety, lambda=0.8> <<robot>> Pmax=?[G !"death"];
+<eventually_shield_GOAL, PreSafety, gamma=0.0> <<robot>> Pmax=?[F "GOAL"];

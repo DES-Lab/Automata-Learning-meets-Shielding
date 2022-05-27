@@ -1,0 +1,122 @@
+===Layout===
+
+########################
+#E                     #
+#                      #
+# #### ### ### #### ## #
+#                      #
+#                      #
+# ## ### ### #### #### #
+#                      #
+#                      #
+# ## ### ### #### #### #
+#                      #
+#                      #
+# #### ### ### #### ## #
+#                      #
+#                      #
+# ### ### ### #### ###G#
+#                      #
+#                      #
+########################
+
+
+===Abstraction===
+########################
+#aaaaaaaaaaaaaaaaaaaaad#
+#aaaaaaaaaaaaaaaaaaaaaa#
+#b####b###b###b####b##b#
+#bbbbbbbdbbbdbbbbdbbbbb#
+#bbbbbdbbbbbbbbbbbbbbbb#
+#c##c###c###c####c####c#
+#ccccccdccccccccdcccccc#
+#ccccccdcccccccccccdccc#
+#f##f###f###f####f####f#
+#ffffffdffffffffdffffff#
+#ffffffdfffffffffffdfff#
+#g####g###g###g####g##g#
+#gggggggggggggggggggggg#
+#gggggggggggggggggggggg#
+#e###e###e###e####e###e#
+#eeeeeeeeeeeeeeeeeeeeee#
+#ddeeeeeeeeeeeeeeeeeeee#
+########################
+
+
+d:death
+a:x
+b:y
+c:z
+e:s
+f:t
+g:u
+
+===Behaviour===
+
+########################
+#aaaaaaaaaaaaaaaaaaaaad#
+#aaaaaaaaaaaaaaaaaaaaaa#
+#b####b###b###b####b##b#
+#bbbbbbbdbbbdbbbbdbbbbb#
+#bbbbbdbbbbbbbbbbbbbbbb#
+#c##c###c###c####c####c#
+#ccccccdccccccccdcccccc#
+#ccccccdcccccccccccdccc#
+#f##f###f###f####f####f#
+#ffffffdffffffffdffffff#
+#ffffffdfffffffffffdfff#
+#b####b###b###b####b##b#
+#bbbbbbbdbbbdbbbbdbbbbb#
+#bbbbbdbbbbbbbbbbbbbbbb#
+#e###e###e###e####e###e#
+#eeeeeeeeeeeeeeeeeeeeee#
+#ddeeeeeeeeeeeeeeeeeeee#
+########################
+
+
+1-right-[right:0.95, left:0.05]
+1-left-[left:0.95, left:0.05]
+1-up-[up:0.95, left:0.05]
+1-down-[down:0.95, left:0.05]
+
+2-right-[right:0.4, up:0.3, left:0.3]
+2-left-[left:0.4, up:0.3, left:0.3]
+2-up-[up:0.4, up:0.3, left:0.3]
+2-down-[down:0.4, up:0.3, left:0.3]
+4-right-[right:0.2, up:0.4, left:0.4]
+4-left-[left:0.2, up:0.4, left:0.4]
+4-up-[up:0.2, up:0.4, left:0.4]
+4-down-[down:0.2, up:0.4, left:0.4]
+
+3-right-[right:0.4, down:0.3, left:0.3]
+3-left-[left:0.4, down:0.3, left:0.3]
+3-up-[up:0.4, down:0.3, left:0.3]
+3-down-[down:0.4, down:0.3, left:0.3]
+5-right-[right:0.2, down:0.4, left:0.4]
+5-left-[left:0.2, down:0.4, left:0.4]
+5-up-[up:0.2, down:0.4, left:0.4]
+5-down-[down:0.2, down:0.4, left:0.4]
+
+===Rewards===
+
+########################
+#                      #
+#                      #
+# #### ### ### #### ## #
+#    a    a            #
+#                      #
+# ## ### ### #### #### #
+#   a       a          #
+#                      #
+# ## ### ### #### #### #
+#                      #
+#                      #
+# #### ### ### #### ## #
+#    a    a            #
+#                      #
+# ### ### ### #### ### #
+#                      #
+#                      #
+########################
+
+a:20

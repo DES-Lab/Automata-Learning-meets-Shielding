@@ -1,0 +1,52 @@
+===Layout===
+
+##########
+#        #
+#       G#
+#E       #
+##########
+
+===Abstraction===
+
+##########
+#cccccddc#
+#ccaacbbG#
+#Ecddceee#
+##########
+
+d:death
+a:a
+b:b
+c:c
+e:e
+
+===Behaviour===
+
+##########
+#     dd #
+#  33 22G#
+#E dd    #
+##########
+
+1-right-[right:0.95, left:0.05]
+1-left-[left:0.95, left:0.05]
+1-up-[up:0.95, left:0.05]
+1-down-[down:0.95, left:0.05]
+
+2-right-[right:0.4, up:0.3, left:0.3]
+2-left-[left:0.4, up:0.3, left:0.3]
+2-up-[up:0.4, up:0.3, left:0.3]
+2-down-[down:0.4, up:0.3, left:0.3]
+4-right-[right:0.2, up:0.4, left:0.4]
+4-left-[left:0.2, up:0.4, left:0.4]
+4-up-[up:0.2, up:0.4, left:0.4]
+4-down-[down:0.2, up:0.4, left:0.4]
+
+3-right-[right:0.4, down:0.3, left:0.3]
+3-left-[left:0.4, down:0.3, left:0.3]
+3-up-[up:0.4, down:0.3, left:0.3]
+3-down-[down:0.4, down:0.3, left:0.3]
+5-right-[right:0.2, down:0.4, left:0.4]
+5-left-[left:0.2, down:0.4, left:0.4]
+5-up-[up:0.2, down:0.4, left:0.4]
+5-down-[down:0.2, down:0.4, left:0.4]
